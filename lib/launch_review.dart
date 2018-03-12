@@ -6,6 +6,6 @@ class LaunchReview {
   static const MethodChannel _channel = 
       const MethodChannel('launch_review'); 
 
-  static Future <void> launch(String appId) => 
+  static Future <void> launch([String appId]) => 
       _channel.invokeMethod('launch',appId); 
 }
