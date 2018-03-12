@@ -1,6 +1,6 @@
 name: launch_review
 description: A Flutter plugin for Android to assist in leaving user reviews/ratings in the Google Play Store.
-version: 0.0.1
+version: 0.2.0
 author: Purusothaman Ramanujam <purushoth.r@gmail.com>
 homepage: https://github.com/purus/launch_review/
 
