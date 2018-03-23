@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:launch_review/launch_review.dart';
 
 void main() => runApp(new MyApp());
@@ -24,7 +23,7 @@ class _MyAppState extends State<MyApp> {
                 child: new RaisedButton(
                     child: new Text("Rate App"),
                     onPressed: () {
-                      LaunchReview.launch("com.iyaffle.rangoli");
+                      LaunchReview.launch(androidAppId: "com.iyaffle.rangoli", iOSAppId: "585027354");
                     }))));
   }
 }

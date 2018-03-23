@@ -32,8 +32,7 @@ public class LaunchReviewPlugin implements MethodCallHandler {
   public void onMethodCall(MethodCall call, Result result) {
     if (call.method.equals("launch")) {
 
-      String appId = (String) call.arguments;
-
+      String appId = (String) call.argument("android_id");
       String appPackageName;
 
       if (appId != null) {
