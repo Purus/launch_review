@@ -2,9 +2,11 @@
 
 [![pub package](https://img.shields.io/pub/v/launch_review.svg)](https://pub.dartlang.org/packages/launch_review)
 
-A Flutter plugin for Android to assist in leaving user reviews/ratings in the Google Play Store.
+A Flutter plugin to assist in leaving user reviews/ratings in Google Play Store and Apple App Store.
 
-*NOTE:* Please feel free to send a PR for adding iOS functionality. I do not have a Mac and so can not work on the iOS part of the plugin.
+> *NOTE:* Please feel free to send a PR to add more functionalities.
+
+Thanks to [Edouard Marquez](https://github.com/g123k) for adding the iOS functionality.
 
 ## Usage
 To use this plugin, add `launch_review` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
@@ -22,10 +24,11 @@ Then invoke the static `launch` method of `LaunchReview` anywhere in your Dart c
 LaunchReview.launch();
 ```
 
-To open the Play Store page for other App, you can pass the package Id of the app.
+To open the App Store page for any other applications, you can pass the app Id.
 
 ``` dart
-LaunchReview.launch("com.iyaffle.myapp");
+LaunchReview.launch(androidAppId: "com.iyaffle.rangoli",
+                    iOSAppId: "585027354");
 ```
 
 This plugin is inspired by the Cordova plugin [cordova-launch-review](https://github.com/dpa99c/cordova-launch-review) created by dpa99c.
