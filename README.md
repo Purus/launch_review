@@ -1,33 +1,37 @@
-# launch_review
+# store_redirect
 
-[![pub package](https://img.shields.io/pub/v/launch_review.svg)](https://pub.dartlang.org/packages/launch_review)
+[![pub package](https://img.shields.io/pub/v/launch_review.svg)](https://pub.dartlang.org/packages/store_redirect)
 
-A Flutter plugin to assist in leaving user reviews/ratings in Google Play Store and Apple App Store.
+A Flutter plugin to redirect users to an app page in Google Play Store and Apple App Store.
+
+The implementation is a fork of: https://github.com/Purus/launch_review
+
+------------------------------
 
 > *NOTE:* Please feel free to send a PR to add more functionalities.
 
 Thanks to [Edouard Marquez](https://github.com/g123k) for adding the iOS functionality.
 
 ## Usage
-To use this plugin, add `launch_review` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
+To use this plugin, add `store_redirect` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
 
 ## Example
 
 Import the library via
 ``` dart
-import 'package:launch_review/launch_review.dart'; 
+import 'package:store_redirect/store_redirect.dart'; 
 ```
 
-Then invoke the static `launch` method of `LaunchReview` anywhere in your Dart code. If no arguments are provided, it will consider the current package.
+Then invoke the static `redirect` method of `StoreRedirect` anywhere in your Dart code. If no arguments are provided, it will consider the current package.
 
 ``` dart
-LaunchReview.launch();
+StoreRedirect.redirect();
 ```
 
 To open the App Store page for any other applications, you can pass the app Id.
 
 ``` dart
-LaunchReview.launch(androidAppId: "com.iyaffle.rangoli",
+StoreRedirect.redirect(androidAppId: "com.iyaffle.rangoli",
                     iOSAppId: "585027354");
 ```
 
