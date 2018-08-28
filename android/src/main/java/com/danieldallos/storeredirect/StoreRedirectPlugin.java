@@ -1,4 +1,4 @@
-package com.iyaffle.launchreview;
+package com.danieldallos.storeredirect;
 
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
@@ -9,13 +9,13 @@ import android.content.Intent;
 import android.net.Uri;
 
 /**
- * LaunchReviewPlugin
+ * StoreRedirectPlugin
  */
-public class LaunchReviewPlugin implements MethodCallHandler {
+public class StoreRedirectPlugin implements MethodCallHandler {
 
   private final Registrar mRegistrar;
 
-  private LaunchReviewPlugin(Registrar registrar) {
+  private StoreRedirectPlugin(Registrar registrar) {
     this.mRegistrar = registrar;
   }
 
@@ -23,14 +23,14 @@ public class LaunchReviewPlugin implements MethodCallHandler {
    * Plugin registration.
    */
   public static void registerWith(Registrar registrar) {
-    final MethodChannel channel = new MethodChannel(registrar.messenger(), "launch_review");
-    LaunchReviewPlugin instance = new LaunchReviewPlugin(registrar);
+    final MethodChannel channel = new MethodChannel(registrar.messenger(), "store_redirect");
+    StoreRedirectPlugin instance = new StoreRedirectPlugin(registrar);
     channel.setMethodCallHandler(instance);
   }
 
   @Override
   public void onMethodCall(MethodCall call, Result result) {
-    if (call.method.equals("launch")) {
+    if (call.method.equals("redirect")) {
 
       String appId = (String) call.argument("android_id");
       String appPackageName;

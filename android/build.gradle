@@ -1,4 +1,4 @@
-group 'com.iyaffle.launchreview'
+group 'com.danieldallos.storeredirect'
 version '1.0-SNAPSHOT'
 
 buildscript {

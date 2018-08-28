@@ -1,8 +1,8 @@
-name: launch_review
-description: A Flutter plugin to assist in leaving user reviews/ratings in Google Play Store and Apple App Store.
+name: store_redirect
+description: A Flutter plugin to redirect users to an app page in Google Play Store and Apple App Store.
 version: 1.0.1
-author: Purusothaman Ramanujam <purushoth.r@gmail.com>
-homepage: https://github.com/purus/launch_review/
+author: Daniel Dallos <flutter@danieldallos.com>
+homepage: https://github.com/Danesz/store_redirect
 
 dependencies:
   flutter:
@@ -14,8 +14,8 @@ dependencies:
 # The following section is specific to Flutter.
 flutter:
   plugin:
-    androidPackage: com.iyaffle.launchreview
-    pluginClass: LaunchReviewPlugin
+    androidPackage: com.danieldallos.storeredirect
+    pluginClass: StoreRedirectPlugin
 
 environment:
   sdk: ">=2.0.0-dev.28.0 <3.0.0"

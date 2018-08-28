@@ -1,16 +1,16 @@
-#import "LaunchReviewPlugin.h"
+#import "StoreRedirectPlugin.h"
 
-@implementation LaunchReviewPlugin
+@implementation StoreRedirectPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
     FlutterMethodChannel* channel = [FlutterMethodChannel
-                                     methodChannelWithName:@"launch_review"
+                                     methodChannelWithName:@"store_redirect"
                                      binaryMessenger:[registrar messenger]];
-    LaunchReviewPlugin* instance = [[LaunchReviewPlugin alloc] init];
+    StoreRedirectPlugin* instance = [[StoreRedirectPlugin alloc] init];
     [registrar addMethodCallDelegate:instance channel:channel];
 }
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
-    if ([@"launch" isEqualToString:call.method]) {
+    if ([@"redirect" isEqualToString:call.method]) {
         NSString *appId = call.arguments[@"ios_id"];
         if (!appId.length) {
             result([FlutterError errorWithCode:@"ERROR"
@@ -19,9 +19,9 @@
         } else {
             NSString* iTunesLink;
             if([[[UIDevice currentDevice] systemVersion] floatValue] >= 11) {
-                iTunesLink = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/xy/app/foo/id%@?action=write-review", appId];
+                iTunesLink = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/xy/app/foo/id%@", appId];
             } else {
-                iTunesLink = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@&action=write-review", appId];
+                iTunesLink = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@", appId];
             }
             
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];

@@ -1,6 +1,6 @@
 # store_redirect
 
-[![pub package](https://img.shields.io/pub/v/launch_review.svg)](https://pub.dartlang.org/packages/store_redirect)
+[![pub package](https://img.shields.io/pub/v/store_redirect.svg)](https://pub.dartlang.org/packages/store_redirect)
 
 A Flutter plugin to redirect users to an app page in Google Play Store and Apple App Store.
 
