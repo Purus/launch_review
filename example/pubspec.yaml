@@ -1,5 +1,5 @@
-name: launch_review_example
-description: Demonstrates how to use the launch_review plugin.
+name: store_redirect_example
+description: Demonstrates how to use the store_redirect plugin.
 
 dependencies:
   flutter:
@@ -13,7 +13,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  launch_review:
+  store_redirect:
     path: ../
 
 # For information on the generic Dart part of this file, see the

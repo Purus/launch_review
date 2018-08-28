@@ -1,6 +1,6 @@
 # launch_review_example
 
-Demonstrates how to use the launch_review plugin.
+Demonstrates how to use the store_redirect plugin.
 
 ## Getting Started
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:launch_review/launch_review.dart';
+import 'package:store_redirect/store_redirect.dart';
 
 void main() => runApp(new MyApp());
 
@@ -18,12 +18,12 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return new MaterialApp(
         home: new Scaffold(
-            appBar: new AppBar(title: new Text('Launch App Review')),
+            appBar: new AppBar(title: new Text('Launch App Redirect')),
             body: new Center(
                 child: new RaisedButton(
-                    child: new Text("Rate App"),
+                    child: new Text("Redirect App"),
                     onPressed: () {
-                      LaunchReview.launch(
+                      StoreRedirect.redirect(
                           androidAppId: "com.iyaffle.rangoli",
                           iOSAppId: "585027354");
                     }))));
