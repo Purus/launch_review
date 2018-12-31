@@ -22,7 +22,13 @@
                                      message:@"Empty app id"
                                      details:nil]);
         } else {
-            NSString *iTunesLink = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@?action=write-review", appId];
+            NSString *iTunesLink;
+
+            if ([call.arguments[@"write_review"] boolValue]) {
+              iTunesLink = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@?action=write-review", appId];
+            } else {
+              iTunesLink = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@", appId];
+            }
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
 
             result(nil);
