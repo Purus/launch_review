@@ -12,20 +12,25 @@
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
     if ([@"launch" isEqualToString:call.method]) {
         NSString *appId = call.arguments[@"ios_id"];
-        if (!appId.length) {
+
+        if (appId == (NSString *)[NSNull null]) {
             result([FlutterError errorWithCode:@"ERROR"
-                                       message:@"Invalid app id"
-                                       details:nil]);
+                                     message:@"App id cannot be null"
+                                     details:nil]);
+        } else if ([appId length] == 0) {
+            result([FlutterError errorWithCode:@"ERROR"
+                                     message:@"Empty app id"
+                                     details:nil]);
         } else {
-            NSString* iTunesLink;
-            if([[[UIDevice currentDevice] systemVersion] floatValue] >= 11) {
-                iTunesLink = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/xy/app/foo/id%@?action=write-review", appId];
+            NSString *iTunesLink;
+
+            if ([call.arguments[@"write_review"] boolValue]) {
+              iTunesLink = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@?action=write-review", appId];
             } else {
-                iTunesLink = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@&action=write-review", appId];
+              iTunesLink = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@", appId];
             }
-            
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
-            
+
             result(nil);
         }
     } else {

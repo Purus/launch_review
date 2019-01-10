@@ -7,6 +7,7 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
 import android.content.Intent;
 import android.net.Uri;
+import android.content.ActivityNotFoundException;
 
 /**
  * LaunchReviewPlugin
@@ -31,20 +32,19 @@ public class LaunchReviewPlugin implements MethodCallHandler {
   @Override
   public void onMethodCall(MethodCall call, Result result) {
     if (call.method.equals("launch")) {
+      String appPackageName = call.argument("android_id");
 
-      String appId = (String) call.argument("android_id");
-      String appPackageName;
-
-      if (appId != null) {
-        appPackageName = appId;
-      } else {
+      if (appPackageName == null) {
         appPackageName = mRegistrar.activity().getPackageName();
       }
 
-      Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName));
-      marketIntent.addFlags(
-          Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-      mRegistrar.activity().startActivity(marketIntent);
+      try {
+          mRegistrar.activity().startActivity(new Intent(Intent.ACTION_VIEW,
+              Uri.parse("market://details?id=" + appPackageName)));
+      } catch (ActivityNotFoundException e) {
+          mRegistrar.activity().startActivity(new Intent(Intent.ACTION_VIEW,
+              Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+      }
 
       result.success(null);
     } else {
