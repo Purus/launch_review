@@ -23,13 +23,16 @@
                                      details:nil]);
         } else {
             NSString *iTunesLink;
-
             if ([call.arguments[@"write_review"] boolValue]) {
               iTunesLink = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@?action=write-review", appId];
             } else {
               iTunesLink = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@", appId];
             }
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
+
+            NSURL* itunesURL = [NSURL URLWithString:iTunesLink];
+            if ([[UIApplication sharedApplication] canOpenURL:itunesURL]) {
+              [[UIApplication sharedApplication] openURL:itunesURL];
+            }
 
             result(nil);
         }
