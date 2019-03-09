@@ -42,6 +42,13 @@ LaunchReview.launch(androidAppId: "com.iyaffle.rangoli",
 
 This plugin is inspired by the Cordova plugin [cordova-launch-review](https://github.com/dpa99c/cordova-launch-review) created by dpa99c.
 
+## iOS Specifics
+Set writeReview to false to only show the app store page. Used only in iOS.
+
+``` dart
+LaunchReview.launch(writeReview: false,iOSAppId: "585027354");
+```
+
 ## License
 
 The MIT License

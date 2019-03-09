@@ -19,7 +19,7 @@ class _MyAppState extends State<MyApp> {
           child: RaisedButton(
             child: Text("Rate App"),
             onPressed: () => LaunchReview.launch(
-              androidAppId: "com.iyaffle.rangoli",
+              androidAppId: "com.iyaffle.kural",
               iOSAppId: "585027354",
             ),
           ),
