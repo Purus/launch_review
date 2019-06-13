@@ -9,14 +9,6 @@ A Flutter plugin to assist in leaving user reviews/ratings in Google Play Store 
 ### iOS
 Thanks to [Edouard Marquez](https://github.com/g123k) for adding the iOS functionality.
 
-For iOS 9 and above, your `Info.plist` file  __MUST__ have the following:
-```
-<key>LSApplicationQueriesSchemes</key>
-<array>
-        <string>itms</string>
-</array>
-```
-
 ## Usage
 To use this plugin, add `launch_review` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
 
