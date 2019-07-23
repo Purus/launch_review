@@ -13,6 +13,7 @@ For iOS 9 and above, your `Info.plist` file  __MUST__ have the following:
 ```
 <key>LSApplicationQueriesSchemes</key>
 <array>
+        <string>itms-beta</string>
         <string>itms</string>
 </array>
 ```
