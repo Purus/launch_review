@@ -6,8 +6,16 @@ class LaunchReview {
   /// Note: It will not work with the iOS Simulator.
   ///
   /// Set writeReview to false to only show the app store page. Used only in iOS.
-  static void launch({String androidAppId, String iOSAppId, bool writeReview = true}) async {
-    await _channel.invokeMethod(
-        'launch', {'android_id': androidAppId, 'ios_id': iOSAppId, 'write_review': writeReview});
+  static void launch(
+      {String androidAppId,
+      String iOSAppId,
+      bool writeReview = true,
+      bool isiOSBeta = false}) async {
+    await _channel.invokeMethod('launch', {
+      'android_id': androidAppId,
+      'ios_id': iOSAppId,
+      'write_review': writeReview,
+      'is_ios_beta': isiOSBeta
+    });
   }
 }
