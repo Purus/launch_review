@@ -11,7 +11,7 @@
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
     if ([@"launch" isEqualToString:call.method]) {
-        NSString *appId = call.arguments[@"ios_id"];
+        NSString *appId = call.arguments[@"ios_id"] ? [self fetchAppIdFromBundleId] : @"";
 
         if (appId == (NSString *)[NSNull null]) {
             result([FlutterError errorWithCode:@"ERROR"
@@ -56,6 +56,43 @@
     } else {
         result(FlutterMethodNotImplemented);
     }
+}
+
+- (NSString *)fetchAppIdFromBundleId
+{
+    NSString* bundleId = [NSBundle mainBundle].bundleIdentifier;
+    NSString* iTunesServiceURL = [NSString stringWithFormat:@"http://itunes.apple.com/lookup?bundleId=%@", bundleId];
+
+    NSString* errorMsg = nil;
+    NSNumber* appStoreId = nil;
+    NSError *error = nil;
+    NSURLResponse *response = nil;
+    NSURL *url = [NSURL URLWithString:iTunesServiceURL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &error];
+    NSInteger resultCount = [jsonData[@"resultCount"] intValue];
+    NSInteger statusCode = ((NSHTTPURLResponse *)response).statusCode;
+
+    if (resultCount > 0 && statusCode == 200){
+        if (!error){
+            appStoreId = jsonData[@"results"][0][@"trackId"];
+        }else{
+            errorMsg = [error localizedDescription];
+        }
+    }else if (statusCode >= 400){
+        //http error
+        errorMsg = [NSString stringWithFormat:@"The server returned a %@ error", @(statusCode)];
+    }else{
+        errorMsg = @"The application could not be found on the App Store.";
+    }
+
+    if(errorMsg != nil){
+        NSLog(@"%@", errorMsg);
+    }
+
+    return [appStoreId stringValue];
 }
 
 @end
