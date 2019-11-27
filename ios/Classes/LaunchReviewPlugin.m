@@ -24,9 +24,9 @@
         } else {
             NSString *iTunesLink;
             if ([call.arguments[@"write_review"] boolValue]) {
-              iTunesLink = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@?action=write-review", appId];
+              iTunesLink = [NSString stringWithFormat:@"https://apps.apple.com/app/id%@?action=write-review", appId];
             } else {
-              iTunesLink = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@", appId];
+              iTunesLink = [NSString stringWithFormat:@"https://apps.apple.com/app/id%@", appId];
             }
             
             if ([call.arguments[@"is_ios_beta"] boolValue]) {
