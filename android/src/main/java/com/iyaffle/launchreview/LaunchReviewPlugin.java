@@ -5,10 +5,16 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
-import android.content.Intent;
-import android.net.Uri;
-import android.content.ActivityNotFoundException;
 
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
+import 	android.content.pm.ActivityInfo;
+import android.widget.Toast;
+
+import java.util.List;
 /**
  * LaunchReviewPlugin
  */
@@ -31,23 +37,61 @@ public class LaunchReviewPlugin implements MethodCallHandler {
 
   @Override
   public void onMethodCall(MethodCall call, Result result) {
-    if (call.method.equals("launch")) {
-      String appPackageName = call.argument("android_id");
+     if (call.method.equals("launch")) {
+      String appId = call.argument("android_id");
 
-      if (appPackageName == null) {
-        appPackageName = mRegistrar.activity().getPackageName();
+      if (appId == null) {
+        appId = mRegistrar.activity().getPackageName();
       }
 
-      try {
-          mRegistrar.activity().startActivity(new Intent(Intent.ACTION_VIEW,
-              Uri.parse("market://details?id=" + appPackageName)));
-      } catch (ActivityNotFoundException e) {
-          mRegistrar.activity().startActivity(new Intent(Intent.ACTION_VIEW,
-              Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+      Intent rateIntent = new Intent(Intent.ACTION_VIEW,
+              Uri.parse("market://details?id=" + appId));
+      boolean marketFound = false;
+
+      // find all applications able to handle our rateIntent
+      final List<ResolveInfo> otherApps =  mRegistrar.activity().getPackageManager()
+              .queryIntentActivities(rateIntent, 0);
+      for (ResolveInfo otherApp: otherApps) {
+        // look for Google Play application
+        if (otherApp.activityInfo.applicationInfo.packageName
+                .equals("com.android.vending")) {
+
+          ActivityInfo otherAppActivity = otherApp.activityInfo;
+          ComponentName componentName = new ComponentName(
+                  otherAppActivity.applicationInfo.packageName,
+                  otherAppActivity.name
+          );
+          // make sure it does NOT open in the stack of your activity
+          rateIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+          // task reparenting if needed
+          rateIntent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+          // if the Google Play was already open in a search result
+          //  this make sure it still go to the app page you requested
+          rateIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+          // this make sure only the Google Play app is allowed to
+          // intercept the intent
+          rateIntent.setComponent(componentName);
+          Toast.makeText(mRegistrar.activity(), "Please Rate Application", Toast.LENGTH_SHORT).show();
+
+          mRegistrar.activity().startActivity(rateIntent);
+          marketFound = true;
+          break;
+
+        }
       }
 
+      // if GP not present on device, open web browser
+      if (!marketFound) {
+        try {
+          mRegistrar.activity().startActivity(new Intent(Intent.ACTION_VIEW,
+                  Uri.parse("market://details?id=" + appId)));
+        } catch (ActivityNotFoundException e) {
+          mRegistrar.activity().startActivity(new Intent(Intent.ACTION_VIEW,
+                  Uri.parse("https://play.google.com/store/apps/details?id=" + appId)));
+        }
+      }
       result.success(null);
-    } else {
+    }  else {
       result.notImplemented();
     }
   }
