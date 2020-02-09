@@ -1,3 +1,7 @@
+## 1.0.2
+
+* Update Android compileSdkVersion to 28
+
 ## 1.0.1
 
 * Add iOS support
