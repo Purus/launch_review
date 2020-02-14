@@ -6,7 +6,7 @@ class LaunchReview {
   /// Note: It will not work with the iOS Simulator.
   ///
   /// Set writeReview to false to only show the app store page. Used only in iOS.
-  static void launch(
+  static Future<void> launch(
       {String androidAppId,
       String iOSAppId,
       bool writeReview = true,
