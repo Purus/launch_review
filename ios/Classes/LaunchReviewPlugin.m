@@ -11,7 +11,7 @@
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
     if ([@"launch" isEqualToString:call.method]) {
-        NSString *appId = call.arguments[@"ios_id"] ?? [self fetchAppIdFromBundleId];
+        NSString *appId = call.arguments[@"ios_id"] ? : [self fetchAppIdFromBundleId];
 
         if (appId == (NSString *)[NSNull null]) {
             result([FlutterError errorWithCode:@"ERROR"
