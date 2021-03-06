@@ -7,8 +7,8 @@ class LaunchReview {
   ///
   /// Set writeReview to false to only show the app store page. Used only in iOS.
   static Future<void> launch(
-      {String androidAppId,
-      String iOSAppId,
+      {String? androidAppId,
+      String? iOSAppId,
       bool writeReview = true,
       bool isiOSBeta = false}) async {
     await _channel.invokeMethod('launch', {
