@@ -1,7 +1,6 @@
 name: launch_review
 description: A Flutter plugin to assist in leaving user reviews/ratings in Google Play Store and Apple App Store.
-version: 2.0.0
-author: Purusothaman Ramanujam <purushoth.r@gmail.com>
+version: 3.0.1
 homepage: https://github.com/purus/launch_review/
 
 dependencies:
@@ -14,9 +13,13 @@ dependencies:
 # The following section is specific to Flutter.
 flutter:
   plugin:
-    androidPackage: com.iyaffle.launchreview
-    pluginClass: LaunchReviewPlugin
+    platforms:
+      android:
+        package: com.iyaffle.launchreview
+        pluginClass: LaunchReviewPlugin
+      ios:
+        pluginClass: LaunchReviewPlugin
 
-environment:
-  sdk: '>=2.12.0 <3.0.0'
-  flutter: ">=0.1.4 <2.0.0"    
+environment:  
+  sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=1.20.0"
