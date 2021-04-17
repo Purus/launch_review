@@ -17,15 +17,20 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-        home: new Scaffold(
-            appBar: new AppBar(title: new Text('Launch App Redirect')),
-            body: new Center(
-                child: new RaisedButton(
-                    child: new Text("Redirect App"),
-                    onPressed: () {
-                      StoreRedirect.redirect(
-                          androidAppId: "com.iyaffle.rangoli",
-                          iOSAppId: "585027354");
-                    }))));
+      home: new Scaffold(
+        appBar: new AppBar(title: new Text('Launch App Redirect')),
+        body: new Center(
+          child: new ElevatedButton(
+            child: new Text("Redirect App"),
+            onPressed: () {
+              StoreRedirect.redirect(
+                androidAppId: "com.iyaffle.rangoli",
+                iOSAppId: "585027354",
+              );
+            },
+          ),
+        ),
+      ),
+    );
   }
 }
