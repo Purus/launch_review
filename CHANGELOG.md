@@ -1,3 +1,8 @@
+## 2.0.1
+
+* Migration to MavenCentral
+* Small improvements
+
 ## 2.0.0
 
 * Add null-safety
