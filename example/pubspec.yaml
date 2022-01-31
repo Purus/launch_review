@@ -1,6 +1,9 @@
 name: store_redirect_example
 description: Demonstrates how to use the store_redirect plugin.
 
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
 dependencies:
   flutter:
     sdk: flutter
