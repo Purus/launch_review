@@ -16,7 +16,8 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import 	android.content.pm.ActivityInfo;
+import android.content.pm.ActivityInfo;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -83,9 +84,9 @@ public class LaunchReviewPlugin implements MethodCallHandler, FlutterPlugin, Act
                     // this make sure only the Google Play app is allowed to
                     // intercept the intent
                     rateIntent.setComponent(componentName);
-                   if (showToast){
+                    if (showToast) {
                         Toast.makeText(activity, toastMessage, Toast.LENGTH_SHORT).show();
-                   } 
+                    }
 
                     activity.startActivity(rateIntent);
                     marketFound = true;
