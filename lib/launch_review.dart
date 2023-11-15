@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 
 class LaunchReview {
-  static const MethodChannel _channel = const MethodChannel('launch_review');
+  static const MethodChannel _channel = MethodChannel('launch_review');
 
   /// Note: It will not work with the iOS Simulator.
   ///
@@ -9,17 +9,13 @@ class LaunchReview {
   static Future<void> launch(
       {String? androidAppId,
       String? iOSAppId,
-      String? toastMessage,
       bool writeReview = true,
-      bool showToast = true,
       bool isiOSBeta = false}) async {
     await _channel.invokeMethod('launch', {
       'android_id': androidAppId,
       'ios_id': iOSAppId,
       'write_review': writeReview,
-      'is_ios_beta': isiOSBeta,
-      'toast_message': toastMessage,
-      'show_toast': showToast
+      'is_ios_beta': isiOSBeta
     });
   }
 }

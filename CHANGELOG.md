@@ -1,3 +1,12 @@
+## 3.0.1
+
+* Fixing pubspec issue
+
+## 3.0.0
+
+* Null safety support. Thanks to @fzyzcjy for the PR.
+* Supports v2 embeddings. Thanks to Leonardo da Silva for the PR.
+
 ## 2.0.0
 
 * Migrate to AndroidX.
