@@ -22,7 +22,10 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    namespace "com.iyaffle.launchreview"
+    if (project.android.hasProperty("namespace")) {
+        namespace "com.iyaffle.launchreview"
+    }
+    
     compileSdkVersion 28
 
     defaultConfig {
