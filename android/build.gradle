@@ -24,11 +24,18 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion 28
 
+    namespace "com.iyaffle.launchreview"
+
     defaultConfig {
         minSdkVersion 16
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
         disable 'InvalidPackage'
+    }
+
+    
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 }
