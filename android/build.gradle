@@ -8,7 +8,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.0'
+        classpath 'com.android.tools.build:gradle:8.1.2'
     }
 }
 
@@ -34,8 +34,4 @@ android {
         disable 'InvalidPackage'
     }
 
-    
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
 }
