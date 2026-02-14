@@ -8,16 +8,14 @@ import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.MethodCall;
-import io.flutter.plugin.common.PluginRegistry;
-
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import 	android.content.pm.ActivityInfo;
-
+import android.content.pm.ActivityInfo;
+import android.widget.Toast; 
 import androidx.annotation.NonNull;
 
 import java.util.List;
@@ -37,10 +35,7 @@ public class LaunchReviewPlugin implements MethodCallHandler, FlutterPlugin, Act
     /**
      * Plugin registration.
      */
-    @SuppressWarnings("deprecation")
-    public static void registerWith(PluginRegistry.Registrar registrar) {
-        register(new LaunchReviewPlugin(), registrar.messenger(), registrar.activity());
-    }
+ 
 
     @Override
     public void onMethodCall(MethodCall call, Result result) {
